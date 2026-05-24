@@ -1,0 +1,21 @@
+# Folders that can be ignored
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+# Visual Studio / OS files
+# These files are specific to the programmer's editor or computer, not the project.
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.DS_Store
+*.pdb
+*.pid
+# Unity-generated files
+*.unitypackage
