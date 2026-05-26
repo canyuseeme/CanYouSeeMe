@@ -41,10 +41,20 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyBrain brain = other.GetComponent<EnemyBrain>();
+            EnemyBrainMelee brainMelee = other.GetComponent<EnemyBrainMelee>();
             
-            if (brain != null)
+            if (brain != null || brainMelee != null)
             {
-                bool isDead = brain.TakeDamage(1);
+                bool isDead = false;
+
+                if (brain != null)
+                {
+                    isDead = brain.TakeDamage(1);
+                }
+                else if (brainMelee != null)
+                {
+                    isDead = brainMelee.TakeDamage(1);
+                }
                 
                 if (isDead)
                 {

@@ -2,22 +2,22 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum AIState { Idle, Active, Alert, Forfeit, Bait }
+public enum MeleeAIState { Idle, Active, Alert, Forfeit, Bait }
 
-public class EnemyBrain : MonoBehaviour
+public class EnemyBrainMelee : MonoBehaviour
 {
-    public bool isNV = false; //isNightVisionEnemy
-    private Camera mainCamera;
-    private Collider2D enemyCollider;
-
     [Header("Health Settings")]
     public int startingLives = 1;
     private int currentLives;
     public List<Sprite> healthSprites; // Drop your sprites here in order: 1 life, 2 lives, 3 lives...
     private SpriteRenderer spriteRenderer;
 
+    [Header("Attack Settings")]
+    public float attackCooldown = 1.5f; // Time in seconds between hits
+    private float lastAttackTime = 0f;
+
     [Header("State Machine")]
-    public AIState currentState = AIState.Idle;
+    public MeleeAIState currentState = MeleeAIState.Idle;
     public float thresholdX = 0.1f; 
     public float thresholdY = 0.01f; 
     public float drift = 0.25f;
@@ -26,12 +26,10 @@ public class EnemyBrain : MonoBehaviour
     [Range(0f, 1f)] public float baitProbability = 0.15f; 
     public float baitDuration1 = 0.5f; 
     public float baitDuration2 = 2.0f; 
-    public float baitSpeed = 10f;      
 
     [Header("Reaction Settings (Near Miss)")]
     public float nearMissRadius = 2.0f;
-    public float reactionCooldown = 1.5f; //Prevents constant twitching
-    public float maxAimOffset = 30f;
+    public float reactionCooldown = 1.5f; 
     private float lastReactionTime = 0f;
     private bool isReacting = false;
 
@@ -47,7 +45,6 @@ public class EnemyBrain : MonoBehaviour
     private EnemyMotor2D motor;
     private Pathfinder pathfinder;
     private StuckDetector stuckDetector;
-    private EnemyShooter shooter;
     private Rigidbody2D rb;
 
     private int intersectionIndex = 0;
@@ -56,7 +53,6 @@ public class EnemyBrain : MonoBehaviour
 
     [Header("Alert Settings")]
     public float alertLimit = 5f;
-
     private Vector2 alertMoveDir;
 
     void Start()
@@ -65,10 +61,6 @@ public class EnemyBrain : MonoBehaviour
         motor = GetComponent<EnemyMotor2D>();
         pathfinder = GetComponent<Pathfinder>();
         stuckDetector = GetComponent<StuckDetector>();
-        shooter = GetComponent<EnemyShooter>();
-
-        mainCamera = Camera.main;
-        enemyCollider = GetComponent<Collider2D>();
 
         spawnPoint = rb.position;
 
@@ -78,7 +70,6 @@ public class EnemyBrain : MonoBehaviour
         }
 
         currentLives = startingLives;
-        
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateCharacterSprite();
     }
@@ -93,9 +84,8 @@ public class EnemyBrain : MonoBehaviour
             CheckForNearMisses();
         }
 
-        // If the enemy is currently in a "Near Miss" reaction, freeze the normal brain logic
+        // If reacting to a gunshot, suspend normal brain logic
         if (isReacting) return; 
-        // ---------------------------
 
         float vis = playerVisibility.CurrentVisibility;
         Vector2 A = rb.position;
@@ -103,7 +93,7 @@ public class EnemyBrain : MonoBehaviour
 
         switch (currentState)
         {
-            case AIState.Idle:
+            case MeleeAIState.Idle:
                 motor.Brake();
                 
                 idleTimer += Time.fixedDeltaTime;
@@ -119,31 +109,31 @@ public class EnemyBrain : MonoBehaviour
                 if (vis > thresholdX) TransitionToActive();
                 break;
 
-            case AIState.Bait:
+            case MeleeAIState.Bait:
                 if (vis > thresholdY)
                 {
                     TransitionToActive();
                 }
                 break;
 
-            case AIState.Active:
-                RunOriginalLogic(A, B);
-                lastKnownPosition = B; 
+            case MeleeAIState.Active:
+                // Update last known position ONLY if we can actually see the player well enough
+                if (vis > thresholdY) lastKnownPosition = B; 
                 
-                if (vis < thresholdY) TransitionToAlert();
+                RunMeleeLogic(A, B, vis);
                 break;
 
-            case AIState.Alert:
+            case MeleeAIState.Alert:
                 alertTimer += Time.fixedDeltaTime;
 
-                //motor.FaceTarget(rb.position + rb.linearVelocity, rb.position); //unnecessary
+                // Fixed: Only applying one clean rotation toward the drift direction
                 motor.FaceTarget(A + alertMoveDir, A);
 
                 if (vis > thresholdY) TransitionToActive();
                 if (alertTimer >= alertLimit) StartCoroutine(ForfeitRoutine());
                 break;
 
-            case AIState.Forfeit:
+            case MeleeAIState.Forfeit:
                 if (vis > thresholdX)
                 {
                     TransitionToActive();
@@ -154,58 +144,86 @@ public class EnemyBrain : MonoBehaviour
         DrawDebugCircle(spawnPoint, leashRadius, Color.red);
     }
 
-    // --- REACTION LOGIC ---
+    // --- MELEE ATTACK COLLISION ---
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the collided object is the player
+        if (collision.transform == targetPoint)
+        {
+            TryExecuteAttack();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Keeps checking if they stay stuck together
+        if (collision.transform == targetPoint)
+        {
+            TryExecuteAttack();
+        }
+    }
+
+    private void TryExecuteAttack()
+    {
+        // Only attack if enough time has passed since the last strike
+        if (Time.time >= lastAttackTime + attackCooldown)
+        {
+            lastAttackTime = Time.time;
+            
+            // Trigger your game manager logic
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.LoseLife();
+            }
+            
+            // Optional: You could call motor.Brake() here for a tiny fraction 
+            // of a second to simulate "hit recovery" bounce-back if you want!
+        }
+    }
+
+    // --- REACTION LOGIC (Aggressive Turn) ---
     private void CheckForNearMisses()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(rb.position, nearMissRadius);
         foreach (var hit in hits)
         {
-            // Requires the player's bullet prefab to be tagged "PlayerBullet"
             if (hit.CompareTag("PlayerBullet"))
             {
-                StartCoroutine(ReactionRoutine());
+                StartCoroutine(ReactionRoutine(hit.transform.position));
                 break;
             }
         }
     }
 
-    private IEnumerator ReactionRoutine()
+    private IEnumerator ReactionRoutine(Vector2 bulletPos)
     {
         isReacting = true;
         lastReactionTime = Time.time;
 
-        // 1. Slam on the brakes
+        // 1. Slam on brakes
         motor.Brake();
 
-        // 2. Calculate a fast, slightly inaccurate snap toward the player
-        Vector2 trueDir = (Vector2)targetPoint.position - rb.position;
-        float randomAngle = Random.Range(-maxAimOffset, maxAimOffset);
-        Vector2 offsetDir = Quaternion.Euler(0, 0, randomAngle) * trueDir;
-        Vector2 lookSpot = rb.position + offsetDir;
-
-        // 3. Snap aim and shoot
-        motor.FaceTarget(lookSpot, rb.position);
-        yield return new WaitForSeconds(0.15f); // Micro-pause to let the player register the snap
+        // 2. Snap instantly toward where the bullet came from
+        motor.FaceTarget(bulletPos, rb.position);
         
-        if (shooter != null && IsTargetVisibleToCamera()) shooter.Shoot();
+        // 3. Brief micro-pause to process the threat, then immediately charge
+        yield return new WaitForSeconds(0.2f); 
         
-        yield return new WaitForSeconds(0.2f); // Recoil pause before carrying on
-
-        isReacting = false;
+        TransitionToActive();
     }
 
     // --- STATE TRANSITIONS ---
     private void TransitionToActive()
     {
         StopAllCoroutines(); 
-        isReacting = false; // Safety reset
+        isReacting = false; 
         idleTimer = 0f;
-        currentState = AIState.Active;
+        currentState = MeleeAIState.Active;
     }
 
     private void TransitionToAlert()
     {
-        currentState = AIState.Alert;
+        currentState = MeleeAIState.Alert;
         alertTimer = 0f;
         
         alertMoveDir = Random.insideUnitCircle.normalized;
@@ -215,92 +233,85 @@ public class EnemyBrain : MonoBehaviour
     // --- COROUTINES ---
     private IEnumerator BaitRoutine()
     {
-        currentState = AIState.Bait;
+        currentState = MeleeAIState.Bait;
         
         float timer = 0f;
-        Vector2 dashDirection = transform.up; 
         
         // Phase 1: Dash
         while (timer < baitDuration1)
         {
-            if (currentState != AIState.Bait) yield break; 
+            if (currentState != MeleeAIState.Bait) yield break; 
             
             if (!isReacting) 
             {
-                // Calculate a point far in front of where we are facing
                 Vector2 dashTarget = rb.position + (Vector2)transform.up * 50f;
-                
-                // Use the motor! This allows for natural acceleration.
-                // We pass 'dashSpeed' to the motor if your motor script supports speed overrides,
-                // otherwise it will just use its max acceleration to get there.
                 motor.MoveTo(dashTarget, rb.position); 
-                
                 timer += Time.fixedDeltaTime;
             }
             yield return new WaitForFixedUpdate();
         }
 
         // Phase 2: Natural Invisibility via Braking
-        if (currentState == AIState.Bait)
+        if (currentState == MeleeAIState.Bait)
         {
             timer = 0f;
             while (timer < baitDuration2)
             {
-                if (currentState != AIState.Bait) yield break;
+                if (currentState != MeleeAIState.Bait) yield break;
                 
                 if (!isReacting)
                 {
-                    motor.Brake(); // Braking to 0 speed naturally drops visibility!
+                    motor.Brake(); 
                     timer += Time.fixedDeltaTime;
                 }
                 yield return new WaitForFixedUpdate();
             }
         }
 
-        if (currentState == AIState.Bait)
+        if (currentState == MeleeAIState.Bait)
         {
             idleTimer = 0f;
-            currentState = AIState.Idle;
+            currentState = MeleeAIState.Idle;
         }
     }
 
     private IEnumerator ForfeitRoutine()
     {
-        currentState = AIState.Forfeit;
+        currentState = MeleeAIState.Forfeit;
         motor.Brake();
 
+        // Blind sweep: Investigate 3 random nearby points before giving up
         for (int i = 0; i < 3; i++)
         {
-            // Pause forfeit shooting if they are currently doing a Near-Miss reaction
             yield return new WaitUntil(() => !isReacting);
 
-            Vector2 spread = Random.insideUnitCircle * 1.2f;
-            Vector2 targetWithSpread = lastKnownPosition + spread;
-            float distToSpot = Vector2.Distance(rb.position, targetWithSpread);
-
-            motor.FaceTarget(targetWithSpread, rb.position);
-            yield return new WaitForSeconds(0.3f); 
-
-            if (pathfinder.CheckLineOfSight(rb.position, targetWithSpread, distToSpot))
-            {
-                if (shooter != null && IsTargetVisibleToCamera()) shooter.Shoot();
-            }
+            Vector2 sweepSpot = lastKnownPosition + Random.insideUnitCircle * 2.5f;
             
-            yield return new WaitForSeconds(0.5f); 
+            // Turn toward the noise/spot
+            motor.FaceTarget(sweepSpot, rb.position);
+            
+            // Take a short, tentative step toward it
+            motor.MoveTo(sweepSpot, rb.position);
+            yield return new WaitForSeconds(0.6f); 
+            
+            motor.Brake();
+            yield return new WaitForSeconds(0.4f);
         }
 
-        currentState = AIState.Idle;
+        currentState = MeleeAIState.Idle;
     }
 
-    private void RunOriginalLogic(Vector2 A, Vector2 B)
+    // --- RELENTLESS MELEE PURSUIT LOGIC ---
+    private void RunMeleeLogic(Vector2 A, Vector2 B, float vis)
     {
-        Vector2 anchorPos = spawnPoint;
-        Vector2 directVec = B - A;
-        Vector2 directDir = directVec.normalized;
-        float distToTarget = directVec.magnitude;
-
-        float playerDistFromAnchor = Vector2.Distance(B, anchorPos);
+        float playerDistFromAnchor = Vector2.Distance(B, spawnPoint);
         bool isPlayerInLeash = playerDistFromAnchor <= leashRadius;
+
+        if (!isPlayerInLeash)
+        {
+            motor.Brake();
+            return;
+        }
 
         stuckDetector.UpdateStuckStatus(A, rb);
         if (stuckDetector.IsActuallyStuck)
@@ -309,54 +320,38 @@ public class EnemyBrain : MonoBehaviour
             stuckDetector.ResetStuckStatus();
         }
 
-        bool hasClearShot = pathfinder.CheckLineOfSight(A, B, distToTarget);
-        Vector2 moveGoal = B;
+        // If player is visible, charge them. If not, charge last known position.
+        Vector2 targetPos = (vis > thresholdX) ? B : lastKnownPosition;
+        float distToTarget = Vector2.Distance(A, targetPos);
+        Vector2 directDir = (targetPos - A).normalized;
 
-        pathfinder.GetHandshakePoints(A, B, directDir, out List<Vector2> allIntersections, out Vector2[] eEnds, out Vector2[] tEnds, out bool[] eRayIntersects, out bool[] tIntersects);
+        bool hasClearPath = pathfinder.CheckLineOfSight(A, targetPos, distToTarget);
+        Vector2 moveGoal = targetPos;
 
-        if (!isPlayerInLeash)
+        if (!hasClearPath || stuckDetector.IsActuallyStuck)
         {
-            motor.Brake();
+            pathfinder.GetHandshakePoints(A, targetPos, directDir, out List<Vector2> allIntersections, out Vector2[] eEnds, out Vector2[] tEnds, out bool[] eRayIntersects, out bool[] tIntersects);
+            
+            if (allIntersections != null && allIntersections.Count > 0)
+            {
+                int finalIndex = intersectionIndex % allIntersections.Count;
+                moveGoal = allIntersections[finalIndex];
+            }
+        }
+
+        // If we reached the last known spot and STILL can't see the player, start searching
+        if (distToTarget < 0.05f && vis < thresholdY)
+        {
+            TransitionToAlert();
         }
         else
         {
-            if (!hasClearShot || stuckDetector.IsActuallyStuck)
-            {
-                if (allIntersections.Count > 0)
-                {
-                    int finalIndex = intersectionIndex % allIntersections.Count;
-                    moveGoal = allIntersections[finalIndex];
-                }
-            }
-            else
-            {
-                moveGoal = A; 
-            }
-
-            bool canStopHere = hasClearShot && !stuckDetector.IsTouchingWall;
-            if (canStopHere) motor.Brake();
-            else motor.MoveTo(moveGoal, A);
+            // Never brake! Run straight through them.
+            motor.MoveTo(moveGoal, A);
+            
+            // Face where we are running, or face the player directly if we have LOS
+            motor.FaceTarget(hasClearPath ? targetPos : moveGoal, A); 
         }
-
-        motor.FaceTarget(B, A);
-        if (hasClearShot && shooter != null && IsTargetVisibleToCamera()) 
-        {
-            shooter.Shoot();
-        }
-    }
-
-    //isNV
-    private bool IsTargetVisibleToCamera()
-    {
-        // If the restriction isn't active, or we are missing references, default to allowing shooting
-        if (!isNV) return true;
-        if (mainCamera == null || enemyCollider == null) return true;
-
-        // Calculate the 6 planes of the camera's viewing area
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
-        
-        // Check if the enemy's collider bounds intersect with the camera view
-        return GeometryUtility.TestPlanesAABB(planes, enemyCollider.bounds);
     }
 
     // --- HEALTH & DAMAGE ---
@@ -378,15 +373,14 @@ public class EnemyBrain : MonoBehaviour
     private IEnumerator Flash()
     {
         VisibilityController myVisibility = GetComponent<VisibilityController>();
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        
-        if (myVisibility != null && sr != null)
+        if (myVisibility != null && spriteRenderer != null)
         {
             myVisibility.enabled = false;
 
-            Color enemyColor = sr.color;
-            enemyColor.a = 1.0f; //flash
-            sr.color = enemyColor;
+            Color enemyColor = spriteRenderer.color;
+            enemyColor.a = 1.0f; // Flash visible
+            spriteRenderer.color = enemyColor;
+            
             yield return new WaitForSeconds(0.1f);
             
             myVisibility.enabled = true;
@@ -397,9 +391,7 @@ public class EnemyBrain : MonoBehaviour
     {
         if (spriteRenderer == null || healthSprites == null || healthSprites.Count == 0) return;
 
-        // Map current lives to the list index (e.g., 3 lives = index 2, 1 life = index 0)
         int spriteIndex = currentLives - 1;
-
         if (spriteIndex >= 0 && spriteIndex < healthSprites.Count)
         {
             spriteRenderer.sprite = healthSprites[spriteIndex];
@@ -411,15 +403,14 @@ public class EnemyBrain : MonoBehaviour
         VisibilityController visScript = GetComponent<VisibilityController>();
         if (visScript != null) visScript.enabled = false;
 
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
+        if (spriteRenderer != null)
         {
-            Color enemyColor = sr.color;
-            enemyColor.a = 1.0f; //flash
-            sr.color = enemyColor;
+            Color enemyColor = spriteRenderer.color;
+            enemyColor.a = 1.0f;
+            spriteRenderer.color = enemyColor;
         }
 
-        Destroy(gameObject, 0.1f); //Slight delay to allow flash upon death
+        Destroy(gameObject, 0.1f); 
     }
 
     private void OnDrawGizmosSelected()
@@ -428,7 +419,6 @@ public class EnemyBrain : MonoBehaviour
         Vector3 center = Application.isPlaying ? (Vector3)spawnPoint : transform.position;
         Gizmos.DrawWireSphere(center, leashRadius);
 
-        // Draw the Near Miss radius so you can adjust it easily
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, nearMissRadius);
     }
