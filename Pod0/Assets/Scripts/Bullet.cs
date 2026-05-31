@@ -79,6 +79,6 @@ public class Bullet : MonoBehaviour
             GameManager.Instance.star2Eligible = false;
         }
         
-        Destroy(gameObject);
+        Destroy(gameObject, 0.01f);
     }
 }
