@@ -4,6 +4,15 @@ public class TutorialManager : MonoBehaviour
 {
     public enum TutorialPhase { Circles, RedDots, Finished }
 
+    [Header("Maps")]
+    public GameObject map1;
+    public GameObject map2;
+    public GameObject map3;
+
+    public GameObject lv1;
+    public GameObject lv2;
+    public GameObject lv3;
+
     [Header("Current Phase")]
     public TutorialPhase currentPhase = TutorialPhase.Circles;
 
@@ -34,14 +43,24 @@ public class TutorialManager : MonoBehaviour
         switch (currentPhase)
         {
             case TutorialPhase.Circles:
+                map1.gameObject.SetActive(true);
+                lv1.gameObject.SetActive(true);
                 HandleCirclesPhase();
                 break;
 
             case TutorialPhase.RedDots:
+                map1.gameObject.SetActive(false);
+                lv1.gameObject.SetActive(false);
+                map2.gameObject.SetActive(true);
+                lv2.gameObject.SetActive(true);
                 HandleRedDotsPhase();
                 break;
 
             case TutorialPhase.Finished:
+                map2.gameObject.SetActive(false);
+                lv2.gameObject.SetActive(false);
+                map3.gameObject.SetActive(true);
+                lv3.gameObject.SetActive(true);
                 // Stop running tracking code once everything is completely clear!
                 break;
         }
