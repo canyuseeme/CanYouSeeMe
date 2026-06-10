@@ -16,8 +16,13 @@ public class Circles : MonoBehaviour
     private Rigidbody2D playerRb;
     private const float MAX_SPEED = 1.5f;
 
+    [Header("Mentor Connection")]
+    public Mentor mentor;
+    public MentorDirection[] directions;
+
     // --- New Timer Variables ---
     private float greenTimer = 0f;
+    private bool wasGreen = false;
 
     // Public property so the Manager can check if this drill is done
     public bool IsCompleted { get; private set; } = false;
@@ -57,7 +62,7 @@ public class Circles : MonoBehaviour
         float masterPercentage = (distancePercentage + speedPercentage) / 2f;
 
         // --- 4. OUTPUT CATEGORIES TO CONSOLE ---
-        Debug.Log($"Distance - {distancePercentage:F1}% | Speed - {speedPercentage:F1}% | Master - {masterPercentage:F1}% | Timer - {greenTimer:F1}s");
+        //Debug.Log($"Distance - {distancePercentage:F1}% | Speed - {speedPercentage:F1}% | Master - {masterPercentage:F1}% | Timer - {greenTimer:F1}s");
 
         // --- 5. DYNAMIC VISUAL & TIMER FEEDBACK ---
         if (masterPercentage > 90f)
@@ -76,9 +81,17 @@ public class Circles : MonoBehaviour
                 lineRenderer.enabled = false; // Make the visual circle disappear
                 Debug.Log($"{gameObject.name} Completed Successfully!");
             }
+
+            wasGreen = true;
         }
         else
         {
+            if (wasGreen)
+            {
+                TriggerDirection(0);
+            }
+            wasGreen = false;
+
             // Revert back to default red
             lineRenderer.startColor = Color.red;
             lineRenderer.endColor = Color.red;
@@ -116,5 +129,20 @@ public class Circles : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private void TriggerDirection(int directionIndex)
+    {
+        if (mentor == null) return;
+        
+        // Safety check to ensure you filled out enough directions in the inspector array
+        if (directions != null && directionIndex < directions.Length)
+        {
+            mentor.ExecuteDirection(directions[directionIndex].position, directions[directionIndex].message);
+        }
+        else
+        {
+            Debug.LogWarning($"TutorialManager: Tried to trigger direction index {directionIndex}, but it hasn't been set up in the Directions array!");
+        }
     }
 }

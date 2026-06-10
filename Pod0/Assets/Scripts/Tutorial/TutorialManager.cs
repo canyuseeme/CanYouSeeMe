@@ -23,6 +23,10 @@ public class TutorialManager : MonoBehaviour
     [Header("Phase 2: Red Dots Setup")]
     public Dots redDotsPhase;
 
+    [Header("Mentor Connection")]
+    public Mentor mentor;
+    public MentorDirection[] directions;
+
     void Start()
     {
         // Initialize Phase 1: Turn on first circle, turn off the rest
@@ -36,6 +40,8 @@ public class TutorialManager : MonoBehaviour
         {
             redDotsPhase.gameObject.SetActive(false);
         }
+
+        TriggerDirection(0);
     }
 
     void Update()
@@ -80,6 +86,8 @@ public class TutorialManager : MonoBehaviour
             if (currentCircleIndex < circles.Length && circles[currentCircleIndex] != null)
             {
                 circles[currentCircleIndex].gameObject.SetActive(true);
+
+                TriggerDirection(currentCircleIndex);
             }
             else
             {
@@ -108,4 +116,26 @@ public class TutorialManager : MonoBehaviour
             // You can easily activate an obstacle gameobject or trigger your next phase script here!
         }
     }
+
+    private void TriggerDirection(int directionIndex)
+    {
+        if (mentor == null) return;
+        
+        // Safety check to ensure you filled out enough directions in the inspector array
+        if (directions != null && directionIndex < directions.Length)
+        {
+            mentor.ExecuteDirection(directions[directionIndex].position, directions[directionIndex].message);
+        }
+        else
+        {
+            Debug.LogWarning($"TutorialManager: Tried to trigger direction index {directionIndex}, but it hasn't been set up in the Directions array!");
+        }
+    }
+}
+
+[System.Serializable]
+public class MentorDirection
+{
+    public UnityEngine.Transform position;
+    [UnityEngine.TextArea(3, 5)] public string message;
 }
