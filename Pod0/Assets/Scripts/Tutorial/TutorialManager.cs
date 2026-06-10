@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject lv1;
     public GameObject lv2;
     public GameObject lv3;
+
+    public GameObject BE1;
+    public GameObject BE2;
 
     [Header("Current Phase")]
     public TutorialPhase currentPhase = TutorialPhase.Circles;
@@ -27,7 +31,7 @@ public class TutorialManager : MonoBehaviour
     public Mentor mentor;
     public MentorDirection[] directions;
 
-    void Start()
+    IEnumerator Start()
     {
         // Initialize Phase 1: Turn on first circle, turn off the rest
         for (int i = 0; i < circles.Length; i++)
@@ -41,7 +45,25 @@ public class TutorialManager : MonoBehaviour
             redDotsPhase.gameObject.SetActive(false);
         }
 
-        TriggerDirection(0);
+        TriggerDirection(0); //See that outline right there? That is you!
+        yield return new WaitForSeconds(3f);
+        TriggerDirection(1); //Try looking around!
+        //[They rotate >90 degrees]
+        TriggerDirection(2); //Great job!
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(3); //Now, your cursor acts like a goal post.
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(4); //The player wants to get TO it.
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(5); //So, place the cursor far away, and hold left click to accelerate!
+        //[They reach max speed]
+        TriggerDirection(6); //Exactly!
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(7); //Once the player reaches the cursor, they will naturally slow down.
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(8); //Or you can hold right click to manually decelerate.
+        yield return new WaitForSeconds(1f);
+        TriggerDirection(9); //Now, try to go around this big circle at top speed!
     }
 
     void Update()
@@ -67,6 +89,8 @@ public class TutorialManager : MonoBehaviour
                 lv2.gameObject.SetActive(false);
                 map3.gameObject.SetActive(true);
                 lv3.gameObject.SetActive(true);
+                BE1.gameObject.SetActive(true);
+                BE2.gameObject.SetActive(true);
                 // Stop running tracking code once everything is completely clear!
                 break;
         }
@@ -87,7 +111,7 @@ public class TutorialManager : MonoBehaviour
             {
                 circles[currentCircleIndex].gameObject.SetActive(true);
 
-                TriggerDirection(currentCircleIndex);
+                TriggerDirection(currentCircleIndex + 9);
             }
             else
             {
