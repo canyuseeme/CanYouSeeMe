@@ -98,6 +98,7 @@ public class EnemyBrain : MonoBehaviour
         // ---------------------------
 
         float vis = playerVisibility.CurrentVisibility;
+        Debug.Log(vis);
         Vector2 A = rb.position;
         Vector2 B = targetPoint.position;
 

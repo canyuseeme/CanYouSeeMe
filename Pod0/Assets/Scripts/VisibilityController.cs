@@ -25,7 +25,8 @@ public class VisibilityController : MonoBehaviour
         float currentSpeed = rb.linearVelocity.magnitude;
 
         float speedPercent = currentSpeed / maxSpeedReference;
-        float visibility = Mathf.Pow(speedPercent, PV);
+        //float visibility = Mathf.Pow(speedPercent, PV);
+        float visibility = speedPercent;
         CurrentVisibility = Mathf.Clamp01(visibility); // Store it here
 
         Color c = sr.color;

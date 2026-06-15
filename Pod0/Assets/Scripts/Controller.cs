@@ -30,6 +30,7 @@ public class Controller : MonoBehaviour
     private float currentSpeed = 0f;
     private Rigidbody2D rb;
     private Camera mainCam;
+    private Animator anim; // <-- ADD THIS LINE HERE
 
     private Vector2 contactNormal;
     private bool isTouchingWall;
@@ -37,6 +38,7 @@ public class Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>(); // <-- ADD THIS LINE HERE
         mainCam = Camera.main;
 
         currentAmmo = maxAmmo;
@@ -133,6 +135,12 @@ public class Controller : MonoBehaviour
         }
 
         GameObject.Find("NR").GetComponent<AudioSource>().volume = 0.1f * (currentSpeed/maxSpeed) + 0.1f;
+
+        // --- ADD THESE LINES HERE ---
+        // 0.3f is the idle speed so it keeps moving when stopped. 
+        // 0.5f is how fast it scales up. Feel free to tweak these numbers!
+        float finalAnimSpeed = (currentSpeed * 1.5f); 
+        anim.SetFloat("Speed", finalAnimSpeed);
     }
 
     void FixedUpdate()
