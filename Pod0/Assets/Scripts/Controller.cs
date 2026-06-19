@@ -30,15 +30,17 @@ public class Controller : MonoBehaviour
     private float currentSpeed = 0f;
     private Rigidbody2D rb;
     private Camera mainCam;
-    private Animator anim; // <-- ADD THIS LINE HERE
+    //private Animator anim;
 
     private Vector2 contactNormal;
     private bool isTouchingWall;
 
+    public float value = 1.5f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>(); // <-- ADD THIS LINE HERE
+        //anim = GetComponent<Animator>();
         mainCam = Camera.main;
 
         currentAmmo = maxAmmo;
@@ -135,12 +137,9 @@ public class Controller : MonoBehaviour
         }
 
         GameObject.Find("NR").GetComponent<AudioSource>().volume = 0.1f * (currentSpeed/maxSpeed) + 0.1f;
-
-        // --- ADD THESE LINES HERE ---
-        // 0.3f is the idle speed so it keeps moving when stopped. 
-        // 0.5f is how fast it scales up. Feel free to tweak these numbers!
-        float finalAnimSpeed = (currentSpeed * 1.5f); 
-        anim.SetFloat("Speed", finalAnimSpeed);
+        
+        //float finalAnimSpeed = (currentSpeed * value); 
+        //anim.SetFloat("Speed", finalAnimSpeed);
     }
 
     void FixedUpdate()
@@ -169,6 +168,7 @@ public class Controller : MonoBehaviour
 
     void Shoot()
     {
+        //anim.Play("bow", 0, 0f);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.linearVelocity = firePoint.up * bulletSpeed;

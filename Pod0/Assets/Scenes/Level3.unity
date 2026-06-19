@@ -1046,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
-      value: Basic Enemy 5
+      value: Basic Enemy 3
       objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_IsActive
@@ -2243,6 +2243,7 @@ MonoBehaviour:
   acceleration: 1.5
   deceleration: 4.5
   stopRadius: 0.125
+  value: 1.5
 --- !u!212 &1415609621
 SpriteRenderer:
   serializedVersion: 2
@@ -3035,7 +3036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
-      value: Basic Enemy 4
+      value: Basic Enemy 2
       objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_IsActive

@@ -10,6 +10,7 @@ public class vignette : MonoBehaviour
         if (target != null)
         {
             transform.position = target.position + offset;
+            //transform.rotation = target.rotation;
         }
     }
 }

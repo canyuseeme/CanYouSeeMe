@@ -71,6 +71,7 @@ public class EnemyBrain : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
 
         spawnPoint = rb.position;
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
         if (targetPoint != null)
         {
@@ -98,7 +99,6 @@ public class EnemyBrain : MonoBehaviour
         // ---------------------------
 
         float vis = playerVisibility.CurrentVisibility;
-        Debug.Log(vis);
         Vector2 A = rb.position;
         Vector2 B = targetPoint.position;
 

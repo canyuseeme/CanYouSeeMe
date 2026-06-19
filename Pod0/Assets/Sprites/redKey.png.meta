@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6fb1a6d61aec9f74891fcb655063ab48
+guid: c55798352e1d8dc4da9d6130ce37c236
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8698285343486567974
-    second: level6_map_0
+      213: -9107547869784588412
+    second: redKey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: level6_map_0
+      name: redKey_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 184
+        width: 22
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 626e0853f6486b870800000000000000
-      internalID: 8698285343486567974
+      spriteID: 48fbf9e577d7b9180800000000000000
+      internalID: -9107547869784588412
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      level6_map_0: 8698285343486567974
+      redKey_0: -9107547869784588412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -128,9 +128,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: drift
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdY
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitProbability
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
       value: Basic Enemy 1
@@ -254,9 +274,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: drift
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdY
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitProbability
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
       value: Basic Enemy 2
@@ -796,6 +836,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: e57291c265e0d944aac528d53ecbfab7, type: 3}
+      propertyPath: baitProbability
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: e57291c265e0d944aac528d53ecbfab7, type: 3}
       propertyPath: m_Name
       value: Main Enemy A
@@ -995,12 +1039,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: drift
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdY
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: startingLives
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitProbability
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
@@ -1272,9 +1336,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: drift
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdY
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitProbability
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
       value: Basic Enemy 3
@@ -1834,6 +1918,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: e57291c265e0d944aac528d53ecbfab7, type: 3}
+      propertyPath: baitProbability
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: e57291c265e0d944aac528d53ecbfab7, type: 3}
       propertyPath: m_Name
       value: Main Enemy B
@@ -1967,9 +2055,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: drift
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: thresholdY
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 2005257434}
+    - target: {fileID: 1734589818225846944, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
+      propertyPath: baitProbability
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3050844833186094797, guid: 3e5c181de2d52304eaeae5610f2cec52, type: 3}
       propertyPath: m_Name
       value: Basic Enemy 4
@@ -3030,6 +3138,7 @@ MonoBehaviour:
   acceleration: 1.5
   deceleration: 4.5
   stopRadius: 0.125
+  value: 1.5
 --- !u!212 &2005257439
 SpriteRenderer:
   serializedVersion: 2

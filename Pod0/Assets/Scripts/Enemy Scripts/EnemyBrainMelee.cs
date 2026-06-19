@@ -63,6 +63,7 @@ public class EnemyBrainMelee : MonoBehaviour
         stuckDetector = GetComponent<StuckDetector>();
 
         spawnPoint = rb.position;
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
         if (targetPoint != null)
         {

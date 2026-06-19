@@ -202,14 +202,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c36ad61253e14b8b9a183749581a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
-  levelID: Level2
+  levelID: Level7
   star1Prefab: {fileID: 2880848844923352079, guid: 257c15533a50bff43ab64d86982f42d2, type: 3}
   star2Prefab: {fileID: 8942962871335715663, guid: 0e20b7921ee47694fa053401b06ce4df, type: 3}
   star3Prefab: {fileID: 626936964337893351, guid: 8cce03660cf8c8d428e3c180e3510c44, type: 3}
   star4Prefab: {fileID: 812893448044031609, guid: 8f90510d658e0ef439188b554539ad13, type: 3}
-  location1: {fileID: 567849144}
-  location2: {fileID: 1552479800}
-  location3: {fileID: 726166081}
+  location1: {fileID: 0}
+  location2: {fileID: 0}
+  location3: {fileID: 0}
 --- !u!114 &65621970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Forest
+  m_text: Front
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -1026,14 +1026,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c36ad61253e14b8b9a183749581a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
-  levelID: Level4
+  levelID: LevelChooser
   star1Prefab: {fileID: 2880848844923352079, guid: 257c15533a50bff43ab64d86982f42d2, type: 3}
   star2Prefab: {fileID: 8942962871335715663, guid: 0e20b7921ee47694fa053401b06ce4df, type: 3}
   star3Prefab: {fileID: 626936964337893351, guid: 8cce03660cf8c8d428e3c180e3510c44, type: 3}
   star4Prefab: {fileID: 812893448044031609, guid: 8f90510d658e0ef439188b554539ad13, type: 3}
-  location1: {fileID: 1570122868}
-  location2: {fileID: 484000049}
-  location3: {fileID: 570968540}
+  location1: {fileID: 0}
+  location2: {fileID: 0}
+  location3: {fileID: 0}
 --- !u!114 &301251765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,14 +1255,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c36ad61253e14b8b9a183749581a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
-  levelID: Level3
+  levelID: Level8
   star1Prefab: {fileID: 2880848844923352079, guid: 257c15533a50bff43ab64d86982f42d2, type: 3}
   star2Prefab: {fileID: 8942962871335715663, guid: 0e20b7921ee47694fa053401b06ce4df, type: 3}
   star3Prefab: {fileID: 626936964337893351, guid: 8cce03660cf8c8d428e3c180e3510c44, type: 3}
   star4Prefab: {fileID: 812893448044031609, guid: 8f90510d658e0ef439188b554539ad13, type: 3}
-  location1: {fileID: 589769169}
-  location2: {fileID: 32539859}
-  location3: {fileID: 1070949110}
+  location1: {fileID: 0}
+  location2: {fileID: 0}
+  location3: {fileID: 0}
 --- !u!114 &375622836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 8
+  m_text: WS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -2315,7 +2315,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859900992}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2883a8c7b786bd44493fa1baf5d479f2, type: 3}
   m_Name: 
@@ -3322,14 +3322,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c36ad61253e14b8b9a183749581a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
-  levelID: Level1
+  levelID: Level6
   star1Prefab: {fileID: 2880848844923352079, guid: 257c15533a50bff43ab64d86982f42d2, type: 3}
   star2Prefab: {fileID: 8942962871335715663, guid: 0e20b7921ee47694fa053401b06ce4df, type: 3}
   star3Prefab: {fileID: 626936964337893351, guid: 8cce03660cf8c8d428e3c180e3510c44, type: 3}
   star4Prefab: {fileID: 812893448044031609, guid: 8f90510d658e0ef439188b554539ad13, type: 3}
-  location1: {fileID: 1115009061}
-  location2: {fileID: 1663663060}
-  location3: {fileID: 627009701}
+  location1: {fileID: 0}
+  location2: {fileID: 0}
+  location3: {fileID: 0}
 --- !u!114 &1622501249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3419,7 +3419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Front
+  m_text: Forest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -4019,14 +4019,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c36ad61253e14b8b9a183749581a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
-  levelID: Level5
+  levelID: LevelChooser
   star1Prefab: {fileID: 2880848844923352079, guid: 257c15533a50bff43ab64d86982f42d2, type: 3}
   star2Prefab: {fileID: 8942962871335715663, guid: 0e20b7921ee47694fa053401b06ce4df, type: 3}
   star3Prefab: {fileID: 626936964337893351, guid: 8cce03660cf8c8d428e3c180e3510c44, type: 3}
   star4Prefab: {fileID: 812893448044031609, guid: 8f90510d658e0ef439188b554539ad13, type: 3}
-  location1: {fileID: 1229463131}
-  location2: {fileID: 411775145}
-  location3: {fileID: 389364570}
+  location1: {fileID: 0}
+  location2: {fileID: 0}
+  location3: {fileID: 0}
 --- !u!114 &1833029598
 MonoBehaviour:
   m_ObjectHideFlags: 0

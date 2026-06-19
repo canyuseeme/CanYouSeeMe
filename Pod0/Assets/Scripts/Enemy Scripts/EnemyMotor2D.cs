@@ -9,12 +9,12 @@ public class EnemyMotor2D : MonoBehaviour
     public float deceleration = 15f;
 
     private Rigidbody2D rb;
-    private Animator anim; // <-- ADD THIS LINE HERE
+    //private Animator anim;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>(); // <-- ADD THIS LINE HERE
+        //anim = GetComponent<Animator>();
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
@@ -53,18 +53,11 @@ public class EnemyMotor2D : MonoBehaviour
         rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetAngle), rotationSpeed * Time.fixedDeltaTime));
     }
 
-    void Update()
-    {
-        if (anim == null) return;
-
-        // Get the enemy's current movement speed
-        float currentSpeed = rb.linearVelocity.magnitude;
-
-        // Since enemies have a maxVelocity of 5 (faster than the player's 1.5), 
-        // we use a smaller multiplier (0.15f) so the animation doesn't look ridiculously fast.
-        float finalAnimSpeed = 0.3f + (currentSpeed * 0.15f);
-
-        // Send it to the enemy's Animator parameter (Assuming it's named "Speed")
-        anim.SetFloat("Speed", finalAnimSpeed);
-    }
+    //void Update()
+    //{
+    //    if (anim == null) return;
+    //    float currentSpeed = rb.linearVelocity.magnitude;
+    //    float finalAnimSpeed = 0.3f + (currentSpeed * 0.15f);
+    //    anim.SetFloat("Speed", finalAnimSpeed);
+    //}
 }
