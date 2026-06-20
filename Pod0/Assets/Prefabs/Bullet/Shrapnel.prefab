@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7178061844875218085}
   - component: {fileID: 5909283467430900195}
   - component: {fileID: 6460831790092124794}
-  m_Layer: 9
-  m_Name: EnemyBullet
-  m_TagString: Untagged
+  - component: {fileID: 6431259649463802723}
+  m_Layer: 12
+  m_Name: Shrapnel
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.008, y: -0.036, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +108,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -170,8 +171,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4937559c802c34da3883c85356ec31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 6
-  lifeTime: 3
+  speed: 3
+  lifeTime: 1
   blood: {fileID: 9190220663626396637, guid: 1a58bbbe443778b4c949a35f6e5f15de, type: 3}
   fireSound: {fileID: 8300000, guid: 23649e9dfaf098a41a0692d38c7bbeae, type: 3}
   volume: 0.3
+--- !u!114 &6431259649463802723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607091712193867518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f249f9e5c6939341bbca4bca895a408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VisibilityController
+  PV: 2
+  maxSpeedReference: 1.5

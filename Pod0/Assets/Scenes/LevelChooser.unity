@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d590bcf991683145b61e5419d7631cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
-  sceneToLoad: StartScreen
+  sceneToLoad: Level9
 --- !u!114 &301251766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 9
+  m_text: Purple
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d590bcf991683145b61e5419d7631cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
-  sceneToLoad: StartScreen
+  sceneToLoad: Level8
 --- !u!114 &375622837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WS
+  m_text: Dungeon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
