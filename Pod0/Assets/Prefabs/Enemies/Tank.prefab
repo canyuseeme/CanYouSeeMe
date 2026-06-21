@@ -189,7 +189,7 @@ MonoBehaviour:
   baitDuration1: 0.5
   baitDuration2: 2
   baitSpeed: 1.5
-  nearMissRadius: 0.2
+  nearMissRadius: 0
   reactionCooldown: 1.5
   maxAimOffset: 30
   targetPoint: {fileID: 0}
