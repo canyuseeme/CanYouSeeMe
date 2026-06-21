@@ -2,16 +2,30 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
+    public float speed = 12f;
+    public float lifeTime = 3f;
+    private Rigidbody2D rb;
+
     [Header("Settings")]
     public GameObject bulletPrefab;
     
-    public float stopThreshold = 0.001f; 
+    public float stopThreshold = 0.001f;
 
-    private Rigidbody2D rb;
+    public AudioClip fireSound;
+    [Range(0f, 1f)] public float volume = 1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity = transform.up * speed;
+
+        if (fireSound != null)
+        {
+            AudioSource.PlayClipAtPoint(fireSound, transform.position, volume);
+        }
+
+        Destroy(gameObject, lifeTime);
     }
 
     void FixedUpdate()
@@ -52,5 +66,16 @@ public class Grenade : MonoBehaviour
             // Clean up
             Destroy(bullet, 3f);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Boundary2"))
+        {
+            return;
+        }
+
+        Destroy(gameObject);
     }
 }

@@ -1057,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734256196382489662, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4515950445792977222, guid: e1a6986b05a01194a98f5b65055b3bfa, type: 3}
     - target: {fileID: 4427501067884887371, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
       propertyPath: m_Name
       value: Grenade Launcher
@@ -1065,6 +1069,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1499419310}
+    - target: {fileID: 4893393573049707469, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1368,6 +1376,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734256196382489662, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4515950445792977222, guid: e1a6986b05a01194a98f5b65055b3bfa, type: 3}
     - target: {fileID: 4427501067884887371, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
       propertyPath: m_Name
       value: Grenade Launcher
@@ -1376,6 +1388,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1499419310}
+    - target: {fileID: 4893393573049707469, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1429,6 +1445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734256196382489662, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4515950445792977222, guid: e1a6986b05a01194a98f5b65055b3bfa, type: 3}
     - target: {fileID: 4427501067884887371, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
       propertyPath: m_Name
       value: Grenade Launcher
@@ -1437,6 +1457,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1499419310}
+    - target: {fileID: 4893393573049707469, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2436,6 +2460,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734256196382489662, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4515950445792977222, guid: e1a6986b05a01194a98f5b65055b3bfa, type: 3}
     - target: {fileID: 4427501067884887371, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
       propertyPath: m_Name
       value: Grenade Launcher
@@ -2444,6 +2472,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1499419310}
+    - target: {fileID: 4893393573049707469, guid: 3030fb32dcfe2f947b4e7b08a9187d76, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

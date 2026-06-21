@@ -181,7 +181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607091712193867518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae4937559c802c34da3883c85356ec31, type: 3}
   m_Name: 
@@ -203,5 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8b59de60b0b5e4d946227962eeb101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grenade
+  speed: 3
+  lifeTime: 3
   bulletPrefab: {fileID: 4607091712193867518, guid: a29a41ca40647cb4f9c81a1dce2dc321, type: 3}
   stopThreshold: 0.001
+  fireSound: {fileID: 8300000, guid: 23649e9dfaf098a41a0692d38c7bbeae, type: 3}
+  volume: 0.3
