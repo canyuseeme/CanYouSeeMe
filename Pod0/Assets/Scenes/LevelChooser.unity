@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d590bcf991683145b61e5419d7631cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
-  sceneToLoad: Level9
+  sceneToLoad: LevelChooser
 --- !u!114 &301251766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Purple
+  m_text: XXXXXXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -3401,7 +3401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859900992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2883a8c7b786bd44493fa1baf5d479f2, type: 3}
   m_Name: 
@@ -6411,7 +6411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d590bcf991683145b61e5419d7631cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
-  sceneToLoad: StartScreen
+  sceneToLoad: LevelChooser
 --- !u!114 &1833029599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6488,7 +6488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 10
+  m_text: XXXXXXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
@@ -6654,7 +6654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d590bcf991683145b61e5419d7631cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
-  sceneToLoad: StartScreen
+  sceneToLoad: LevelChooser
 --- !u!114 &1874019592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6731,7 +6731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shop
+  m_text: XXXXXXX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}
   m_sharedMaterial: {fileID: -6251777646142717973, guid: 0a3078c5a9ecee142b7b86402d3e7a65, type: 2}

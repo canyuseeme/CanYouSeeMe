@@ -188,7 +188,7 @@ MonoBehaviour:
   nearMissRadius: 0.2
   reactionCooldown: 1.5
   targetPoint: {fileID: 0}
-  leashRadius: 2
+  leashRadius: 100
   alertLimit: 5
 --- !u!114 &3533591914776410183
 MonoBehaviour:

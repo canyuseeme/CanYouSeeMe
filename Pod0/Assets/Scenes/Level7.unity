@@ -911,7 +911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8677229324312422982, guid: cf60ec220b712f94892b53760a8d2416, type: 3}
       propertyPath: leashRadius
-      value: 8
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8677229324312422982, guid: cf60ec220b712f94892b53760a8d2416, type: 3}
       propertyPath: targetPoint
@@ -1402,7 +1402,7 @@ PrefabInstance:
     - target: {fileID: 8593532751670446585, guid: 3ed80ffe07499d644a31da8576bbb58c, type: 3}
       propertyPath: music
       value: 
-      objectReference: {fileID: 8300000, guid: c265031fb6bf1af42b7f6e5921148d8e, type: 3}
+      objectReference: {fileID: 8300000, guid: c0f17dfbb3e8d4743be8d436d9a9959b, type: 3}
     - target: {fileID: 8593532751670446585, guid: 3ed80ffe07499d644a31da8576bbb58c, type: 3}
       propertyPath: volume2
       value: 0.2
@@ -1441,7 +1441,7 @@ Transform:
   m_GameObject: {fileID: 608934194}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.34, y: 0.6421, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0.0771, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3691,7 +3691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8677229324312422982, guid: cf60ec220b712f94892b53760a8d2416, type: 3}
       propertyPath: leashRadius
-      value: 8
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8677229324312422982, guid: cf60ec220b712f94892b53760a8d2416, type: 3}
       propertyPath: targetPoint
